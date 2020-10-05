@@ -2,8 +2,11 @@
 
 ## Autores
 **Curso:** Procesamiento Digital de Imagenes (2020-1)
+
 **Docente:** David Stephen Fernandez 
+
 **Integrantes:** Angie Castañeda Martinez y Joan Sebastian Gomez Acevedo
+
 **Universidad de Antioquia**
 
 ## Descripción del proyecto
@@ -19,4 +22,5 @@ Adicionalmente se debe contar con una camara conectada al equipo y un objeto de 
 1. Clonar el proyecto
 2. Ir al directorio del proyecto
 3. Instalar los requerimentos desde la consola
-    -```pip install -r requirements.txt```
+
+    *```pip install -r requirements.txt```
