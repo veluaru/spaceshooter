@@ -23,4 +23,4 @@ Adicionalmente se debe contar con una camara conectada al equipo y un objeto de 
 2. Ir al directorio del proyecto
 3. Instalar los requerimentos desde la consola
 
-    *```pip install -r requirements.txt```
+    - ```pip install -r requirements.txt```
