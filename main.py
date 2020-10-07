@@ -1,3 +1,14 @@
+#################################################
+#Nombre: Space Shooter con camara
+#Por: Angie Castañeda Martinez y Joan Sebastian Gomez Acevedo
+#Curso: Programación digital de imágenes
+#Profesor: David Stephen Fernández
+#V1 Octubre de 2020
+#################################################
+
+#################################################
+#Importamos Librerias
+#################################################
 from __future__ import division
 import pygame
 import random
@@ -6,12 +17,12 @@ import threading
 import cv2
 import numpy as np
 
-## assets folder
+#################################################
+#Inicializamos variables
+#################################################
 img_dir = path.join(path.dirname(__file__), 'assets')
 sound_folder = path.join(path.dirname(__file__), 'sounds')
 
-###############################
-## to be placed in "constant.py" later
 WIDTH = 480
 HEIGHT = 600
 FPS = 60
@@ -19,27 +30,25 @@ POWERUP_TIME = 2500
 BAR_LENGTH = 100
 BAR_HEIGHT = 10
 
-# Define Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
-###############################
 
-###############################
-## to placed in "__init__.py" later
-## initialize pygame and create window
+#################################################
+#Se inicializa el juego
+#################################################
 pygame.init()
 pygame.mixer.init()  # For sound
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Shooter")
 clock = pygame.time.Clock()  # For syncing the FPS
-###############################
 
 font_name = pygame.font.match_font('arial')
 speed_change = 0
+
 
 #################################################
 #Codigo para abrir la camara y detectar el objeto
@@ -47,16 +56,19 @@ speed_change = 0
 def camera():
 
     #Rango de color que vamos a detectar
-    Low = np.array([100, 100, 20])
-    High = np.array([125, 255, 255])
+    Low = np.array([85, 85, 150])
+    High = np.array([100, 215, 255])
     posX, posY = 0, 0 #Inicializamos las coordenadas del objeto 
     
     cap = cv2.VideoCapture(0) 
     global speed_change #Inicializamos variable que almacena el cambio en la posicion
     
+    #################################################
+    #Loop de la camara
+    #################################################
     while (True): 
         
-        #Configuraciones del video
+         #Configuraciones del video
          ret, frame = cap.read()
          frame=cv2.flip(frame,1) #Se voltea la camara
          frameHSV = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) #Se cambia el color a HSV
@@ -86,7 +98,7 @@ def camera():
             itemSize = cv2.contourArea(objectBorder) 
             
             #Limitamos el tamaño de los objetos que nos interesan a un area mayor a 800
-            if itemSize > 800:
+            if itemSize > 400:
                 
                 #Almacenamos el centro de nuestro objeto
                 center = cv2.moments(objectBorder)
@@ -226,7 +238,7 @@ class Explosion(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.center = center
 
-
+#Player methods
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -375,7 +387,7 @@ class Mob(pygame.sprite.Sprite):
 
 ## defines the sprite for Powerups
 
-
+#Power methods
 class Pow(pygame.sprite.Sprite):
     def __init__(self, center):
         pygame.sprite.Sprite.__init__(self)
@@ -651,5 +663,7 @@ while running:
     pygame.display.flip()
     
 
-
 pygame.quit()
+#################################################
+#Fin del juego
+#################################################
