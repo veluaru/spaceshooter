@@ -57,7 +57,7 @@ def camera():
 
     #Rango de color que vamos a detectar
     Low = np.array([85, 85, 150])
-    High = np.array([100, 215, 255])
+    High = np.array([115, 245, 255])
     posX, posY = 0, 0 #Inicializamos las coordenadas del objeto 
     
     cap = cv2.VideoCapture(0) 
@@ -98,7 +98,7 @@ def camera():
             itemSize = cv2.contourArea(objectBorder) 
             
             #Limitamos el tamaño de los objetos que nos interesan a un area mayor a 800
-            if itemSize > 400:
+            if itemSize > 300:
                 
                 #Almacenamos el centro de nuestro objeto
                 center = cv2.moments(objectBorder)
